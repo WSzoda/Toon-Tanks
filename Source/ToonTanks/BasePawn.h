@@ -16,27 +16,20 @@ public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
 
-	UPROPERTY(VisibleAnywhere)
-	bool DostepnaWszedzie = true;
-
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadWrite)
-	bool DostepnaInsancja = true;
-	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-private:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Pawn Components", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Pawn Components")
 	UCapsuleComponent* CapsuleComponent;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Pawn Components", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Pawn Components")
 	UStaticMeshComponent* BaseMesh;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Pawn Components", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Pawn Components")
 	UStaticMeshComponent* TurretMesh;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Pawn Components", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Pawn Components")
 	USceneComponent* ProjectileSpawnPoint;
 
 public:	

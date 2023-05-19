@@ -22,6 +22,8 @@ public:
 	ATank();
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	virtual void Tick(float DeltaTime) override;
 private:
 	UPROPERTY(EditDefaultsOnly, Category="Components")
 	USpringArmComponent* SpringArm;
@@ -54,4 +56,7 @@ protected:
 	void Shoot(const FInputActionValue& Value);
 
 	void Look(const FInputActionValue& Value);
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float MoveSpeed = 50;
 };

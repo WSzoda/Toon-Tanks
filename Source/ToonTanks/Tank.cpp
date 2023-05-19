@@ -9,6 +9,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "InputAction.h"
+#include "Kismet/GameplayStatics.h"
 
 
 ATank::ATank()
@@ -42,12 +43,20 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	}
 }
 
+void ATank::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+}
+
 void ATank::Move(const FInputActionValue& Value)
 {
 	if(Controller)
 	{
 		const float MoveValue = Value.Get<float>();
 		UE_LOG(LogTemp, Display, TEXT("working: %f"), MoveValue);
+		float const DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
+		FVector const Forward = FVector(MoveValue, 0, 0) * MoveSpeed * DeltaTime;
+		AddActorLocalOffset(Forward);
 	}
 }
 
