@@ -4,9 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "BasePawn.h"
+#include "InputActionValue.h"
 #include "Tank.generated.h"
 class USpringArmComponent;
 class UCameraComponent;
+class UInputMappingContext;
+class UInputAction;
 
 /**
  * 
@@ -17,10 +20,38 @@ class TOONTANKS_API ATank : public ABasePawn
 	GENERATED_BODY()
 public:
 	ATank();
+
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 private:
 	UPROPERTY(EditDefaultsOnly, Category="Components")
 	USpringArmComponent* SpringArm;
 
 	UPROPERTY(EditDefaultsOnly, Category="Components")
 	UCameraComponent* Camera;
+
+	
+
+protected:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UInputMappingContext* InputMapping;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UInputAction* InputMoveForward;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UInputAction* InputTurn;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UInputAction* InputShoot;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UInputAction* InputLook;
+
+	void Move(const FInputActionValue& Value);
+
+	void Turn(const FInputActionValue& Value);
+
+	void Shoot(const FInputActionValue& Value);
+
+	void Look(const FInputActionValue& Value);
 };
