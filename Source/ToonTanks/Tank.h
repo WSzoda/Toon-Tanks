@@ -59,4 +59,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float MoveSpeed = 50;
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float RotateSpeed = 50;
 };

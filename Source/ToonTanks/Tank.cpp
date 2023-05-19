@@ -53,15 +53,21 @@ void ATank::Move(const FInputActionValue& Value)
 	if(Controller)
 	{
 		const float MoveValue = Value.Get<float>();
-		UE_LOG(LogTemp, Display, TEXT("working: %f"), MoveValue);
-		float const DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
-		FVector const Forward = FVector(MoveValue, 0, 0) * MoveSpeed * DeltaTime;
-		AddActorLocalOffset(Forward);
+		FVector Forward = FVector::ZeroVector;
+		Forward.X = MoveValue * MoveSpeed * UGameplayStatics::GetWorldDeltaSeconds(this);
+		AddActorLocalOffset(Forward, true);
 	}
 }
 
 void ATank::Turn(const FInputActionValue& Value)
 {
+	if(Controller)
+	{
+		const float TurnValue = Value.Get<float>();
+		FRotator Rotator = FRotator::ZeroRotator;
+		Rotator.Yaw = TurnValue * RotateSpeed * UGameplayStatics::GetWorldDeltaSeconds(this);
+		AddActorLocalRotation(Rotator, true);
+	}
 }
 
 void ATank::Shoot(const FInputActionValue& Value)
