@@ -29,4 +29,12 @@ private:
 	ATank* PlayersTank;
 
 	void AimAtPlayer();
+
+	FTimerHandle FireRateTimerHandle;
+	float FireRate = 2.f;
+	void CheckFireCondition();
+
+	bool IsInFireRange() const;
+
+	void Shoot();
 };

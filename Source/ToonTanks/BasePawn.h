@@ -31,6 +31,7 @@ protected:
 
 	void RotateTurret(FVector LookAtTarget);
 
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

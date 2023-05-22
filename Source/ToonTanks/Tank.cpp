@@ -37,7 +37,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 			PEnhancedInputComponent->BindAction(InputMoveForward, ETriggerEvent::Triggered, this, &ATank::Move);
 			PEnhancedInputComponent->BindAction(InputLook, ETriggerEvent::Triggered, this, &ATank::Look);
-			PEnhancedInputComponent->BindAction(InputShoot, ETriggerEvent::Triggered, this, &ATank::Shoot);
+			PEnhancedInputComponent->BindAction(InputShoot, ETriggerEvent::Started, this, &ATank::Shoot);
 			PEnhancedInputComponent->BindAction(InputTurn, ETriggerEvent::Triggered, this, &ATank::Turn);
 		}
 	}
@@ -87,6 +87,19 @@ void ATank::Turn(const FInputActionValue& Value)
 
 void ATank::Shoot(const FInputActionValue& Value)
 {
+	if(!Controller) return;
+	
+	if(Value.Get<bool>())
+	{
+		DrawDebugSphere(
+			GetWorld(),
+			ProjectileSpawnPoint->GetComponentLocation(),
+			10,
+			10,
+			FColor::Red,
+			false,
+			1);
+	}
 }
 
 void ATank::Look(const FInputActionValue& Value)
