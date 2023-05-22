@@ -31,9 +31,13 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category="Components")
 	UCameraComponent* Camera;
 
+	APlayerController* PlayerController;
+
 	
 
 protected:
+	virtual void BeginPlay() override;
+	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
 	UInputMappingContext* InputMapping;
 

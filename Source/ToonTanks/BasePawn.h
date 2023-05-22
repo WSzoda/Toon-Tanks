@@ -17,9 +17,6 @@ public:
 	ABasePawn();
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Pawn Components")
 	UCapsuleComponent* CapsuleComponent;
 
@@ -31,6 +28,8 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Pawn Components")
 	USceneComponent* ProjectileSpawnPoint;
+
+	void RotateTurret(FVector LookAtTarget);
 
 public:	
 	// Called every frame

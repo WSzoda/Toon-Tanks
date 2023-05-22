@@ -25,7 +25,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	APlayerController* PlayerController = Cast<APlayerController>(GetController());
+	PlayerController = Cast<APlayerController>(GetController());
 	if(PlayerController)
 	{
 		UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer());
@@ -46,6 +46,21 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if(PlayerController)
+	{
+		FHitResult HitResult;
+		PlayerController->GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
+		RotateTurret(HitResult.ImpactPoint);
+		
+	}
+}
+
+void ATank::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	
 }
 
 void ATank::Move(const FInputActionValue& Value)
