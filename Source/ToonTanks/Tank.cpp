@@ -9,7 +9,9 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "InputAction.h"
+#include "Projectile.h"
 #include "Kismet/GameplayStatics.h"
+#include "Engine/World.h"
 
 
 ATank::ATank()
@@ -52,15 +54,12 @@ void ATank::Tick(float DeltaTime)
 		FHitResult HitResult;
 		PlayerController->GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
 		RotateTurret(HitResult.ImpactPoint);
-		
 	}
 }
 
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	
 }
 
 void ATank::Move(const FInputActionValue& Value)
@@ -91,14 +90,7 @@ void ATank::Shoot(const FInputActionValue& Value)
 	
 	if(Value.Get<bool>())
 	{
-		DrawDebugSphere(
-			GetWorld(),
-			ProjectileSpawnPoint->GetComponentLocation(),
-			10,
-			10,
-			FColor::Red,
-			false,
-			1);
+		Fire();
 	}
 }
 

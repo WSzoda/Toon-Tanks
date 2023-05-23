@@ -23,15 +23,18 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category="Combat")
 	float MaxDistance = 500;
+
+	UPROPERTY(EditAnywhere, Category="Combat")
+	float FireRate = 2.f;
 	
 	ATank* PlayersTank;
 
-	void AimAtPlayer();
-
 	FTimerHandle FireRateTimerHandle;
-	float FireRate = 2.f;
+	
+	void AimAtPlayer();
+	
 	void CheckFireCondition();
 
 	bool IsInFireRange() const;

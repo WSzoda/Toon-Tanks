@@ -33,24 +33,24 @@ private:
 
 	APlayerController* PlayerController;
 
-	
-
 protected:
 	virtual void BeginPlay() override;
+
+private:
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
 	UInputMappingContext* InputMapping;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
 	UInputAction* InputMoveForward;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
 	UInputAction* InputTurn;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
 	UInputAction* InputShoot;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Enhanced Input")
+	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
 	UInputAction* InputLook;
 
 	void Move(const FInputActionValue& Value);

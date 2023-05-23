@@ -66,6 +66,7 @@ void ATurret::Shoot()
 {
 	if(!PlayersTank) return;
 
+	Fire();
 	DrawDebugSphere(
 		GetWorld(),
 		ProjectileSpawnPoint->GetComponentLocation(),

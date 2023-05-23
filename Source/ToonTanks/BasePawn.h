@@ -5,7 +5,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "BasePawn.generated.h"
+class UHealthComponent;
 class UCapsuleComponent;
+class AProjectile;
 
 UCLASS()
 class TOONTANKS_API ABasePawn : public APawn
@@ -29,7 +31,16 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Pawn Components")
 	USceneComponent* ProjectileSpawnPoint;
 
+	UPROPERTY(EditDefaultsOnly, Category="Combat")
+	TSubclassOf<AProjectile> ProjectileClass;
+
+	UPROPERTY(EditDefaultsOnly, Category="Combat")
+	UHealthComponent* HealthComponent;
+	
+
 	void RotateTurret(FVector LookAtTarget);
+
+	void Fire();
 
 
 public:	
