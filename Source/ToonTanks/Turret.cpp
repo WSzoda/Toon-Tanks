@@ -50,6 +50,12 @@ void ATurret::CheckFireCondition()
 	Shoot();
 }
 
+void ATurret::HandleDestruction()
+{
+	Super::HandleDestruction();
+	Destroy();
+}
+
 bool ATurret::IsInFireRange() const
 {
 	if(!PlayersTank) return false;

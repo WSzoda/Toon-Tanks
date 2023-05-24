@@ -27,10 +27,10 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerController = Cast<APlayerController>(GetController());
-	if(PlayerController)
+	PlayerTankController = Cast<APlayerController>(GetController());
+	if(PlayerTankController)
 	{
-		UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer());
+		UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerTankController->GetLocalPlayer());
 		if(Subsystem){
 			Subsystem->ClearAllMappings();
 			Subsystem->AddMappingContext(InputMapping, 0);
@@ -49,12 +49,24 @@ void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if(PlayerController)
+	if(PlayerTankController)
 	{
 		FHitResult HitResult;
-		PlayerController->GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
+		PlayerTankController->GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
 		RotateTurret(HitResult.ImpactPoint);
 	}
+}
+
+void ATank::HandleDestruction()
+{
+	Super::HandleDestruction();
+	SetActorHiddenInGame(true);
+	SetActorTickEnabled(false);
+}
+
+APlayerController* ATank::GetPlayerTankController() const
+{
+	return PlayerTankController;
 }
 
 void ATank::BeginPlay()

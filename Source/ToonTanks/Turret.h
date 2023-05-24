@@ -19,6 +19,8 @@ public:
 	ATurret();
 	virtual void Tick(float DeltaTime) override;
 
+	void HandleDestruction();
+
 protected:
 	virtual void BeginPlay() override;
 

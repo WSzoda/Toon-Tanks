@@ -37,11 +37,11 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category="Combat")
 	UHealthComponent* HealthComponent;
 	
-
 	void RotateTurret(FVector LookAtTarget);
 
 	void Fire();
 
+	void HandleDestruction();
 
 public:	
 	// Called every frame

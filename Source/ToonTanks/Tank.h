@@ -24,6 +24,10 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void Tick(float DeltaTime) override;
+
+	void HandleDestruction();
+
+	APlayerController* GetPlayerTankController() const;
 private:
 	UPROPERTY(EditDefaultsOnly, Category="Components")
 	USpringArmComponent* SpringArm;
@@ -31,8 +35,7 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category="Components")
 	UCameraComponent* Camera;
 
-	APlayerController* PlayerController;
-
+	APlayerController* PlayerTankController;
 protected:
 	virtual void BeginPlay() override;
 

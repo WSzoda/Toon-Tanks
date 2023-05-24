@@ -61,6 +61,11 @@ void ABasePawn::Fire()
 	
 }
 
+void ABasePawn::HandleDestruction()
+{
+	// TODO: Visual and sound effects
+}
+
 // Called every frame
 void ABasePawn::Tick(float DeltaTime)
 {
