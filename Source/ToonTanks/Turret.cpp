@@ -45,7 +45,9 @@ void ATurret::AimAtPlayer()
 
 void ATurret::CheckFireCondition()
 {
+	if(!PlayersTank) return;
 	if(!IsInFireRange()) return;
+	if(!PlayersTank->bAlive) return;
 
 	Shoot();
 }

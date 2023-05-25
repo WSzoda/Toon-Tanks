@@ -8,6 +8,7 @@
 class UHealthComponent;
 class UCapsuleComponent;
 class AProjectile;
+class USoundBase;
 
 UCLASS()
 class TOONTANKS_API ABasePawn : public APawn
@@ -32,16 +33,26 @@ protected:
 	USceneComponent* ProjectileSpawnPoint;
 
 	UPROPERTY(EditDefaultsOnly, Category="Combat")
+	UParticleSystem* DeathParticle;
+
+	UPROPERTY(EditDefaultsOnly, Category="Combat")
 	TSubclassOf<AProjectile> ProjectileClass;
 
 	UPROPERTY(EditDefaultsOnly, Category="Combat")
 	UHealthComponent* HealthComponent;
+
+	UPROPERTY(EditDefaultsOnly, Category="Combat")
+	USoundBase* DeathSound;
+
+	UPROPERTY(EditAnywhere, Category="Combat")
+	TSubclassOf<UCameraShakeBase> DeathCameraShake;
+	
 	
 	void RotateTurret(FVector LookAtTarget);
 
 	void Fire();
 
-	void HandleDestruction();
+	void virtual HandleDestruction();
 
 public:	
 	// Called every frame

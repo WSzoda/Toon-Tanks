@@ -62,6 +62,7 @@ void ATank::HandleDestruction()
 	Super::HandleDestruction();
 	SetActorHiddenInGame(true);
 	SetActorTickEnabled(false);
+	bAlive = false;
 }
 
 APlayerController* ATank::GetPlayerTankController() const
@@ -105,9 +106,4 @@ void ATank::Shoot(const FInputActionValue& Value)
 		Fire();
 	}
 }
-
-void ATank::Look(const FInputActionValue& Value)
-{
-}
-
 

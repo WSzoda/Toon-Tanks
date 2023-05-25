@@ -27,6 +27,8 @@ public:
 
 	void HandleDestruction();
 
+	bool bAlive = true;
+
 	APlayerController* GetPlayerTankController() const;
 private:
 	UPROPERTY(EditDefaultsOnly, Category="Components")

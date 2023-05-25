@@ -6,6 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "ToonTanksGameMode.generated.h"
 
+class AToonTanksPlayerController;
 class ATank;
 /**
  * 
@@ -23,4 +24,19 @@ protected:
 
 private:
 	ATank* PlayerTank;
+	AToonTanksPlayerController* ToonTanksPlayerController;
+
+	float Delay = 3.f;
+
+	int32 TargetTowers = 0;
+	int32 GetTargetTowerCount();
+
+	void HandleGameStart();
+
+protected:
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartGame();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void GameOver(bool bWonGame);
 };
